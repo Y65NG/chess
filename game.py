@@ -68,8 +68,8 @@ class Board:
         if r + 4 < len(self.board) and c + 4 < len(self.board):
             if self.board[r][c] == self.board[r+1][c+1] == self.board[r+2][c+2] == self.board[r+3][c+3] == self.board[r+4][c+4] == color:
                 return True
-        if r - 4 >= 0 and c - 4 >= 0:
-            if self.board[r][c] == self.board[r-1][c-1] == self.board[r-2][c-2] == self.board[r-3][c-3] == self.board[r-4][c-4] == color:
+        if r - 4 >= 0 and c + 4 < len(self.board):
+            if self.board[r][c] == self.board[r-1][c+1] == self.board[r-2][c+2] == self.board[r-3][c+3] == self.board[r-4][c+4] == color:
                 return True
         return False
         
