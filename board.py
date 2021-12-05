@@ -1,28 +1,14 @@
-from os import system
-import platform
-
-
 BLACK = -1
 WHITE = +1
 SERIAL_X = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o']
 SERIAL_Y = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
 
-def clean():
-    """
-    Clears the console
-    """
-    os_name = platform.system().lower()
-    if 'windows' in os_name:
-        system('cls')
-    else:
-        system('clear')
-        
 class Board:
-    def __init__(self, size):
-        self.size = size
-        self.board = [[0] * size for _ in range(size)]
+    def __init__(self):
+        this.board = [[0] * 15 for _ in range(15)]
     
     def __str__(self):
+        def __str__(self):
         s = '   '
         for x in range(self.size):
             s += SERIAL_X[x] + ' '
@@ -45,10 +31,6 @@ class Board:
         for x in range(self.size):
             s += SERIAL_X[x] + ' '
         return s + '\n'
-    
-    def show(self):
-        print(self)
-
     def win(self, color):
         if self.size < 5:
             return False
@@ -93,31 +75,4 @@ class Board:
     
     def get(self, r, c):
         return self.board[r][c]
-    
-clean()
-board = Board(15)
-clean()
-board.show()
-while True:
-    black = input('It\'s black\'s turn.\n')
-    x, y = black[0], black[1:]
-    while not board.set(ord(x) - ord('a'), int(y), BLACK):
-        black = input('Invalid set!\n')
-        x, y = black[0], black[1:]
-    if board.win(BLACK):
-        print('Black wins!')
-        break
-    
-    white = input('It\'s white\'s turn.\n')
-    x, y = white[0], white[1:]
-    while not board.set(ord(x) - ord('a'), int(y), WHITE):
-        white = input('Invalid set!\n')
-        x, y = white[0], white[1:]
-    if board.win(WHITE):
-        print('White wins!')
-        break
-    
-    
-
-    
     
